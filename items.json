@@ -1,0 +1,14 @@
+{
+  "name": "Self-Hosted Beginner PDF",
+  "status": "complete",
+  "description": "50+ page PDF guide for absolute beginners to self-hosting",
+  "goal": "Fill the r/selfhosted gap - zero-jargon guide for non-technical users",
+  "started": "2026-02-24",
+  "completed": "2026-02-24",
+  "prd": "life/projects/selfhosted-beginner-pdf/PRD.md",
+  "final_doc": "life/projects/selfhosted-beginner-pdf/output/final-self-hosted-101.md",
+  "chapters": 11,
+  "target": "r/selfhosted beginners",
+  "length": "~50 pages (2858 lines)",
+  "tags": ["project", "side-hustle", "pdf", "selfhosted"]
+}
