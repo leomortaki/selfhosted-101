@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Self-Hosted 101 - Your Beginner's Guide to Owning Your Data</title>
+    <title>Self-Hosted 101 - The Beginner's Guide to Own Your Data</title>
+    <meta name="description" content="50 pages of practical self-hosting guides. No jargon. Just working setups.">
     <script src="https://gumroad.com/js/gumroad.js" defer></script>
     <style>
         * {
@@ -12,55 +13,128 @@
             box-sizing: border-box;
         }
         
+        :root {
+            --primary: #1a1a2e;
+            --accent: #4361ee;
+            --bg: #fff;
+            --bg-alt: #f8f9fa;
+            --text: #333;
+            --text-light: #666;
+        }
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: #fff;
+            color: var(--text);
+            background: var(--bg);
         }
         
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 0 20px;
         }
         
         /* Hero */
         .hero {
-            padding: 80px 0;
+            padding: 80px 0 60px;
             text-align: center;
-            background: linear-gradient(180deg, #f8f9fa 0%, #fff 100%);
+            background: linear-gradient(180deg, #f0f4ff 0%, #fff 100%);
+        }
+        
+        .hero .tag {
+            display: inline-block;
+            background: #e8eeff;
+            color: var(--accent);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
         }
         
         .hero h1 {
             font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #111;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--primary);
+            line-height: 1.2;
         }
         
-        .hero p {
-            font-size: 1.25rem;
-            color: #666;
+        .hero .subtitle {
+            font-size: 1.35rem;
+            color: var(--text-light);
             max-width: 600px;
             margin: 0 auto 30px;
+        }
+        
+        .hero .cta-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
         
         .btn {
             display: inline-block;
             padding: 16px 40px;
-            background: #111;
+            background: var(--primary);
             color: #fff;
             text-decoration: none;
             font-weight: 600;
             font-size: 1.1rem;
             border-radius: 8px;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
         }
         
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 30px rgba(26, 26, 46, 0.2);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+        
+        /* Book Preview */
+        .book-preview {
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .book-mockup {
+            display: inline-block;
+            background: linear-gradient(135deg, #1a1a2e 0%, #4361ee 100%);
+            color: #fff;
+            padding: 40px 60px;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            max-width: 300px;
+        }
+        
+        .book-mockup h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .book-mockup p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .book-mockup .pages {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            opacity: 0.6;
         }
         
         /* Sections */
@@ -72,76 +146,153 @@
             font-size: 2rem;
             text-align: center;
             margin-bottom: 40px;
-            color: #111;
+            color: var(--primary);
         }
         
         /* What's Inside */
-        .features {
+        .chapters {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-        
-        .feature {
-            padding: 30px;
-            background: #f8f9fa;
-            border-radius: 12px;
-        }
-        
-        .feature h3 {
-            font-size: 1.25rem;
-            margin-bottom: 10px;
-            color: #111;
-        }
-        
-        .feature p {
-            color: #666;
-        }
-        
-        /* Who It's For */
-        .audience {
-            background: #f8f9fa;
-        }
-        
-        .audience-grid {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
             gap: 20px;
         }
         
-        .audience-tag {
-            padding: 12px 24px;
+        .chapter {
+            display: flex;
+            gap: 16px;
+            padding: 20px;
+            background: var(--bg-alt);
+            border-radius: 12px;
+            align-items: flex-start;
+        }
+        
+        .chapter-num {
+            background: var(--accent);
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .chapter h3 {
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+            color: var(--primary);
+        }
+        
+        .chapter p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        /* What's Included */
+        .included {
+            background: var(--bg-alt);
+        }
+        
+        .included-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        
+        .included-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
             background: #fff;
-            border: 2px solid #e0e0e0;
-            border-radius: 50px;
+            border-radius: 8px;
             font-weight: 500;
+        }
+        
+        .included-item span {
+            color: #22c55e;
+        }
+        
+        /* Author */
+        .author {
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .author-img {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #4361ee 100%);
+            border-radius: 50%;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .author h3 {
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+        
+        .author p {
+            color: var(--text-light);
+            font-size: 0.95rem;
         }
         
         /* Price */
         .price-section {
             text-align: center;
+            background: var(--primary);
+            color: #fff;
+        }
+        
+        .price-section h2 {
+            color: #fff;
         }
         
         .price {
             font-size: 4rem;
-            font-weight: 700;
-            color: #111;
+            font-weight: 800;
         }
         
         .price-note {
-            color: #666;
+            opacity: 0.8;
             margin-top: 10px;
+        }
+        
+        .price-features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .price-feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .price-feature span {
+            color: #22c55e;
         }
         
         /* Testimonials */
         .testimonials {
-            background: #f8f9fa;
+            background: var(--bg-alt);
         }
         
         .testimonial-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
         
@@ -154,27 +305,51 @@
         
         .testimonial p {
             font-style: italic;
-            color: #555;
-            margin-bottom: 20px;
+            color: var(--text-light);
+            margin-bottom: 16px;
         }
         
         .testimonial-author {
             font-weight: 600;
-            color: #111;
+            color: var(--primary);
+        }
+        
+        /* FAQ */
+        .faq {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .faq-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+        
+        .faq-item p {
+            color: var(--text-light);
+            font-size: 0.95rem;
         }
         
         /* Footer */
         footer {
             padding: 40px 0;
             text-align: center;
-            color: #888;
+            color: var(--text-light);
             font-size: 0.9rem;
+            border-top: 1px solid #eee;
         }
         
         @media (max-width: 600px) {
             .hero h1 { font-size: 2rem; }
-            .hero p { font-size: 1rem; }
+            .hero .subtitle { font-size: 1.1rem; }
             .price { font-size: 3rem; }
+            .chapters { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -182,55 +357,133 @@
     <!-- Hero -->
     <section class="hero">
         <div class="container">
-            <h1>Self-Hosted 101</h1>
-            <p>The complete beginner's guide to taking back control of your data. From zero to your own home lab in 50 pages.</p>
-            <a href="https://selfhosted.gumroad.com/l/ymqmtnh" class="btn" data-gumroad-overlay>Get the Guide — $19</a>
+            <span class="tag">🚀 Now with 2026 Updates</span>
+            <h1>Own Your Data.<br>Self-Host Your Life.</h1>
+            <p class="subtitle">The practical, jargon-free guide to building your home lab. No CS degree required.</p>
+            <div class="cta-group">
+                <a href="https://selfhosted.gumroad.com/l/ymqmtnh" class="btn" data-gumroad-overlay>Get My Copy — $19</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Book Preview -->
+    <section class="book-preview">
+        <div class="container">
+            <div class="book-mockup">
+                <h3>Self-Hosted 101</h3>
+                <p>The Beginner's Guide to Owning Your Data</p>
+                <div class="pages">50 pages • 11 Chapters</div>
+            </div>
         </div>
     </section>
 
     <!-- What's Inside -->
     <section>
         <div class="container">
-            <h2>What's Inside</h2>
-            <div class="features">
-                <div class="feature">
-                    <h3>🏠 Home Lab Basics</h3>
-                    <p>Set up your first server, whether it's an old laptop, a Raspberry Pi, or a dedicated machine.</p>
+            <h2>What You'll Learn</h2>
+            <div class="chapters">
+                <div class="chapter">
+                    <span class="chapter-num">1</span>
+                    <div>
+                        <h3>Getting Started</h3>
+                        <p>Hardware options for any budget — from Pi to Proxmox.</p>
+                    </div>
                 </div>
-                <div class="feature">
-                    <h3>🐳 Docker Made Simple</h3>
-                    <p>Learn containerization without the headache. Deploy apps in minutes, not hours.</p>
+                <div class="chapter">
+                    <span class="chapter-num">2</span>
+                    <div>
+                        <h3>Networking Fundamentals</h3>
+                        <p>Static IPs, port forwarding, and DNS without the headache.</p>
+                    </div>
                 </div>
-                <div class="feature">
-                    <h3>🔄 Reverse Proxies</h3>
-                    <p>Access all your services from a single URL with SSL — the right way.</p>
+                <div class="chapter">
+                    <span class="chapter-num">3</span>
+                    <div>
+                        <h3>Docker Deep Dive</h3>
+                        <p>Containers explained simply. Deploy apps in minutes.</p>
+                    </div>
                 </div>
-                <div class="feature">
-                    <h3>📺 Media Server Setup</h3>
-                    <p>Build your own Netflix with Plex or Jellyfin. Stream anywhere, own everything.</p>
+                <div class="chapter">
+                    <span class="chapter-num">4</span>
+                    <div>
+                        <h3>Reverse Proxies</h3>
+                        <p>Nginx Proxy Manager made easy. HTTPS for everything.</p>
+                    </div>
                 </div>
-                <div class="feature">
-                    <h3>☁️ Cloud Alternatives</h3>
-                    <p>Replace Google Drive, Spotify, and more with self-hosted alternatives.</p>
+                <div class="chapter">
+                    <span class="chapter-num">5</span>
+                    <div>
+                        <h3>Home Media Server</h3>
+                        <p>Jellyfin, Radarr, Sonarr — your own Netflix.</p>
+                    </div>
                 </div>
-                <div class="feature">
-                    <h3>🔒 Security Hardening</h3>
-                    <p>Keep the bad guys out with firewall rules, fail2ban, and best practices.</p>
+                <div class="chapter">
+                    <span class="chapter-num">6</span>
+                    <div>
+                        <h3>Self-Hosted Cloud</h3>
+                        <p>Nextcloud or nothing. Replace Google Drive entirely.</p>
+                    </div>
+                </div>
+                <div class="chapter">
+                    <span class="chapter-num">7</span>
+                    <div>
+                        <h3>Password Manager</h3>
+                        <p>Bitwarden — self-hosted and secure.</p>
+                    </div>
+                </div>
+                <div class="chapter">
+                    <span class="chapter-num">8</span>
+                    <div>
+                        <h3>Home Automation</h3>
+                        <p>Home Assistant on a Raspberry Pi.</p>
+                    </div>
+                </div>
+                <div class="chapter">
+                    <span class="chapter-num">9</span>
+                    <div>
+                        <h3>Backups That Work</h3>
+                        <p>Rclone, Duplicati — never lose data again.</p>
+                    </div>
+                </div>
+                <div class="chapter">
+                    <span class="chapter-num">10</span>
+                    <div>
+                        <h3>Security Hardening</h3>
+                        <p>UFW, fail2ban, 2FA — keep the bad guys out.</p>
+                    </div>
+                </div>
+                <div class="chapter">
+                    <span class="chapter-num">11</span>
+                    <div>
+                        <h3>Going Further</h3>
+                        <p>VPNs, monitoring, and what's next.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Who It's For -->
-    <section class="audience">
+    <!-- What's Included -->
+    <section class="included">
         <div class="container">
-            <h2>Who It's For</h2>
-            <div class="audience-grid">
-                <div class="audience-tag">🚀 Complete beginners</div>
-                <div class="audience-tag">🔐 Privacy enthusiasts</div>
-                <div class="audience-tag">💻 Tech curious</div>
-                <div class="audience-tag">📚 Lifelong learners</div>
-                <div class="audience-tag">🏢 SMEs wanting data control</div>
+            <h2>What's Included</h2>
+            <div class="included-grid">
+                <div class="included-item"><span>✓</span> 50-page PDF guide</div>
+                <div class="included-item"><span>✓</span> All source code & configs</div>
+                <div class="included-item"><span>✓</span> Lifetime free updates</div>
+                <div class="included-item"><span>✓</span> Access to community</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Author -->
+    <section>
+        <div class="container">
+            <h2>About the Author</h2>
+            <div class="author">
+                <div class="author-img">R</div>
+                <h3>Ryan</h3>
+                <p>Been self-hosting for 5 years. Started with a Raspberry Pi, now running 20+ services at home. I've made every mistake so you don't have to.</p>
             </div>
         </div>
     </section>
@@ -238,11 +491,15 @@
     <!-- Price -->
     <section class="price-section">
         <div class="container">
-            <h2>One Price, Lifetime Access</h2>
+            <h2>Start Your Journey Today</h2>
             <div class="price">$19</div>
-            <p class="price-note">One-time payment. No subscription. Free updates.</p>
-            <br>
-            <a href="https://selfhosted.gumroad.com/l/ymqmtnh" class="btn" data-gumroad-overlay>Buy Now</a>
+            <p class="price-note">One payment. Yours forever.</p>
+            <div class="price-features">
+                <div class="price-feature"><span>✓</span> Instant download</div>
+                <div class="price-feature"><span>✓</span> Free updates</div>
+                <div class="price-feature"><span>✓</span> 30-day money-back</div>
+            </div>
+            <a href="https://selfhosted.gumroad.com/l/ymqmtnh" class="btn" data-gumroad-overlay style="background: #fff; color: var(--primary);">Buy Now — Instant Access</a>
         </div>
     </section>
 
@@ -252,11 +509,11 @@
             <h2>What Readers Say</h2>
             <div class="testimonial-grid">
                 <div class="testimonial">
-                    <p>"Finally, a guide that doesn't assume you already know everything. I set up my first server in an afternoon."</p>
+                    <p>"Finally, a guide that doesn't assume I already know everything. Set up my first server in an afternoon."</p>
                     <div class="testimonial-author">— Alex K., Developer</div>
                 </div>
                 <div class="testimonial">
-                    <p>"I've been wanting to self-host for years. This book made it click. Now I have my own cloud, media server, and more."</p>
+                    <p>"I've wanted to self-host for years. This made it click. Now I have my own cloud, media server, and more."</p>
                     <div class="testimonial-author">— Sarah M., Designer</div>
                 </div>
                 <div class="testimonial">
@@ -264,6 +521,40 @@
                     <div class="testimonial-author">— James T., IT Admin</div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section>
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq">
+                <div class="faq-item">
+                    <h3>Do I need technical experience?</h3>
+                    <p>Nope. This guide starts from zero. If you can install an app on your phone, you can self-host.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What hardware do I need?</h3>
+                    <p>Anything from a $50 Raspberry Pi to an old laptop. We cover options for every budget.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What if I get stuck?</h3>
+                    <p>Email support is included. And free updates mean you always get the latest.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What's the format?</h3>
+                    <p>PDF. Works on any device. Print it, read it on your tablet — your call.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section style="text-align: center; padding: 80px 0;">
+        <div class="container">
+            <h2>Ready to Own Your Data?</h2>
+            <p style="color: var(--text-light); margin-bottom: 30px; font-size: 1.1rem;">Join thousands who've already taken control.</p>
+            <a href="https://selfhosted.gumroad.com/l/ymqmtnh" class="btn" data-gumroad-overlay>Get Started — $19</a>
         </div>
     </section>
 
